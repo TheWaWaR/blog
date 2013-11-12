@@ -5,7 +5,7 @@ import os
 from flask import Flask
 from blog.views import bp as bp_blog
 from utils.markdown import parse_md
-from common.gvars import PAGES, POSTS
+from utils.gvars import PAGES, POSTS
 
 def init_pages_posts(root_path):
     pages_path = os.path.join(root_path, 'markdowns/pages')

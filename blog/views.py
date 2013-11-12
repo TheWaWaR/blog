@@ -1,7 +1,7 @@
 #coding: utf-8
 
-from flask import Blueprint, current_app, abort, render_template
-from common.gvars import PAGES, POSTS
+from flask import Blueprint, abort, render_template
+from utils.gvars import PAGES, POSTS
 
 bp = Blueprint('blog', __name__)
 CONTENTS = {}

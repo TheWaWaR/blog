@@ -4,6 +4,5 @@
     Global variables.
 '''
 
-
-from flask_sqlalchemy import SQLAlchemy
-db = SQLAlchemy()
+PAGES = {}
+POSTS = {}

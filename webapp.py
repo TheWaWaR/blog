@@ -1,20 +1,41 @@
 #!/usr/bin/env python
 #coding: utf-8
 
+import os
 from flask import Flask
-from common.views import bp as bp_common
+from blog.views import bp as bp_blog
+from utils.markdown import parse_md
+from common.gvars import PAGES, POSTS
 
+def init_pages_posts(root_path):
+    pages_path = os.path.join(root_path, 'markdowns/pages')
+    posts_path = os.path.join(root_path, 'markdowns/posts')
+    
+    for name in os.listdir(pages_path):
+        if name[-3:] != '.md': continue
+        path = os.path.join(pages_path, name)
+        PAGES[name] = parse_md(path)
+
+    for name in os.listdir(posts_path):
+        if name[-3:] != '.md': continue
+        path = os.path.join(posts_path, name)
+        POSTS[name] = parse_md(path)
+
+    print '===================='
+    print 'PAGES, POSTS:', PAGES, POSTS
+    print '===================='
+    
+        
 def create_app():
 
     tApp = Flask(__name__)
     tApp.config.from_pyfile('settings.py')
 
-    blueprints = [bp_common]
+    blueprints = [bp_blog]
     for bp in blueprints:
         tApp.register_blueprint(bp)
-        
-    register_jinja(tApp)
-    
+
+    init_pages_posts(tApp.root_path)
     ############################################################
     # Request management
     @tApp.before_request
@@ -26,27 +47,8 @@ def create_app():
     def error_404(e):
         return 'Not Found! There is nothing here......', 404
 
-        
-    @tApp.route('/')
-    def index():
-        return 'index'
-
     return tApp
 
-
-def register_jinja(tApp):
-    # Template Filter
-    @tApp.template_filter('nullempty')
-    def ifnull(value, default=""):
-        return default if value is None else value
-
-    # Template function
-    @tApp.context_processor
-    def context_processor():
-        def demo_func():
-            return 'demo processor'
-            
-        return { 'demo_func': demo_func }
 
         
 app = create_app()
@@ -57,4 +59,5 @@ if __name__ == '__main__':
         port = int(sys.argv[1])
         app.run(host='0.0.0.0', port=port, debug=True)
     except Exception, e:
+        print 'Usage: python webapp.py <port>'
         print e

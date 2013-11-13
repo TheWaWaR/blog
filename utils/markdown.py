@@ -101,7 +101,4 @@ def init_pages_posts(root_path):
         else:
             CATEGORIES[category].append(post)
             
-    # print '===================='
-    # print 'PAGES, POSTS, CATEGORIES:', PAGES, POSTS, CATEGORIES
-    # print '===================='
-    
+            

@@ -11,8 +11,7 @@ Installation
 ### 1. Setup Octopress
 
     git clone git://github.com/imathis/octopress.git octopress
-    cd octopress    # If you use RVM, You'll be asked if you trust the
-    .rvmrc file (say yes).
+    cd octopress    # If you use RVM, You'll be asked if you trust the .rvmrc file (say yes).
     ruby --version  # Should report Ruby 1.9.3p194
 
 

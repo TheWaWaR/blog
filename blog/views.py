@@ -1,5 +1,6 @@
 #coding: utf-8
 
+import commands
 from flask import (Blueprint, abort, redirect, url_for,
                    render_template, current_app)
 from utils.gvars import PAGES, POSTS, CATEGORIES
@@ -49,10 +50,16 @@ def post(name):
     return render_template('post.html', post=post)
 
 
+@bp.route('/pull')
+def pull():
+    res = commands.getoutput('git pull')
+    return '{0} <a href="/">Home</a>'.format(res)
+
+    
 @bp.route('/rebuild')
 def rebuild():
     PAGES.clear()
     POSTS.clear()
     CATEGORIES.clear()
     init_pages_posts(current_app.root_path)
-    return redirect(url_for('blog.home'))
+    return '{0} <hr/> <a href="/">Home</a>'.format('<br />'.join(POSTS.keys()))

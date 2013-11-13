@@ -21,8 +21,12 @@ class BleepRenderer(HtmlRenderer, SmartyPants):
         # return highlight(text, lexer, formatter)
 
     def image(self, link, title, alt):
-        return '''<figure><img class="bordered-img" src="%(src)s">
-        <figcaption>%(title)s</figcaption> </figure>''' % dict(src=link, title=alt, alt=alt)
+        if title is None:
+            title = ''
+        if alt is None:
+            alt = ''
+            
+        return '''<img class="img-rounded" src="%(src)s">''' % dict(src=link, title=alt, alt=alt)
 
         
 # And use the renderer

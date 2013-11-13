@@ -17,8 +17,7 @@ import inspect
 from datetime import datetime
 from jinja2 import Template
 
-bin_path = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
-root_path = os.path.split(bin_path)[0]
+root_path = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 template_path = os.path.join(root_path, 'markdowns/template.md')
 posts_path = os.path.join(root_path, 'markdowns/posts/{0}.md'.format(args.k))
 

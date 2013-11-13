@@ -3,7 +3,10 @@
 '''
     Global variables.
 '''
+from collections import OrderedDict
 
-PAGES = {}
-POSTS = {}
+PAGES = OrderedDict()
+POSTS = OrderedDict()
 CATEGORIES = {}
+
+

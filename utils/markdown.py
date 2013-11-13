@@ -36,6 +36,7 @@ md = misaka.Markdown(renderer,
 # ==============================================================================
 from .gvars import PAGES, POSTS, CATEGORIES
 
+    
 def parse_header(data):
     ''' header ~ meta '''
     meta = {}
@@ -66,23 +67,40 @@ def parse_md(path):
 def init_pages_posts(root_path):
     pages_path = os.path.join(root_path, 'markdowns/pages')
     posts_path = os.path.join(root_path, 'markdowns/posts')
-    
+
+    page_lst = []
     for name in os.listdir(pages_path):
         if name[-3:] != '.md': continue
         path = os.path.join(pages_path, name)
-        PAGES[name] = parse_md(path)
+        page = parse_md(path)
+        page['name'] = name
+        page_lst.append(page)
+    page_lst.sort(lambda x, y: 1 if x['created'] < y['created'] else -1)
+    for page in page_lst:
+        PAGES[page['name']] = page
 
+    post_lst = []
     for name in os.listdir(posts_path):
         if name[-3:] != '.md': continue
         path = os.path.join(posts_path, name)
         post = parse_md(path)
-        POSTS[name] = post
-        category = post.get('category', 'default')
-        if category in CATEGORIES:
-            CATEGORIES[category].append(name)
+        post['name'] = name
+        post_lst.append(post)
+        
+    post_lst.sort(lambda x, y: 1 if x['created'] < y['created'] else -1)
+    for post in post_lst:
+        POSTS[post['name']] = post
+        
+        category = post.get('category', '{default}')
+        c_lst = CATEGORIES.get(category, None)
+        if c_lst is None:
+            CATEGORIES[category] = [post]
         else:
-            CATEGORIES[category] = [name]
+            CATEGORIES[category].append(post)
+            
+        
 
+        
     print '===================='
     print 'PAGES, POSTS, CATEGORIES:', PAGES, POSTS, CATEGORIES
     print '===================='

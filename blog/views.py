@@ -15,20 +15,16 @@ def home():
     ''' Home '''
     return render_template('home.html',
                            pages=PAGES,
-                           posts=POSTS,
+                           posts=POSTS.values(),
                            categories=CATEGORIES)
 
     
 @bp.route('/category/<name>')
 def category(name):
-    posts = {}
-    for post_name in CATEGORIES[name]:
-        posts[post_name] = POSTS[post_name]
-        
     return render_template('category.html',
                            name=name,
                            pages=PAGES,
-                           posts=posts,
+                           posts=CATEGORIES[name],
                            categories=CATEGORIES)
 
     

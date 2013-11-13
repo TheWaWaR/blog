@@ -1,5 +1,5 @@
 
-title: All about Postgresql
+title: Postgresql 安装与配置
 created: 2013-07-11 11:36
 category: 编程技术
 **********
@@ -48,7 +48,7 @@ Add user
 ``` sql
     CREATE USER tom WITH PASSWORD 'public';
     -- Use this to change password >>> \password tom;
-    
+
     CREATE DATABASE jerry;
     GRANT ALL PRIVILEGES ON DATABASE jerry to tom;
     \q

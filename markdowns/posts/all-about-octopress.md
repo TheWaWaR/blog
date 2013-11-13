@@ -1,5 +1,5 @@
 
-title: All about Octopress
+title: Octopress 安装与配置
 created: 2013-07-11 13:59
 category: 编程技术
 **********

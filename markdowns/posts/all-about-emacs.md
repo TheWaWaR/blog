@@ -1,5 +1,5 @@
 
-title: All about Emacs
+title: Emacs 安装与配置
 created: 2013-07-11 14:01
 category: 编程技术
 **********

@@ -1,5 +1,5 @@
 
-title: All about Git
+title: Git 安装与配置
 created: 2013-07-16 11:42
 category: 编程技术
 **********

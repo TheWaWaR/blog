@@ -32,7 +32,7 @@ md = misaka.Markdown(renderer,
 
 
 # ==============================================================================
-#  
+#  Init pages & posts
 # ==============================================================================
 from .gvars import PAGES, POSTS, CATEGORIES
 
@@ -92,16 +92,12 @@ def init_pages_posts(root_path):
         POSTS[post['name']] = post
         
         category = post.get('category', '{default}')
-        c_lst = CATEGORIES.get(category, None)
-        if c_lst is None:
+        if CATEGORIES.get(category, None) is None:
             CATEGORIES[category] = [post]
         else:
             CATEGORIES[category].append(post)
             
-        
-
-        
-    print '===================='
-    print 'PAGES, POSTS, CATEGORIES:', PAGES, POSTS, CATEGORIES
-    print '===================='
+    # print '===================='
+    # print 'PAGES, POSTS, CATEGORIES:', PAGES, POSTS, CATEGORIES
+    # print '===================='
     

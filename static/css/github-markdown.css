@@ -83,7 +83,7 @@ p, blockquote, ul, ol, dl, li, table, pre {
     margin: 15px 0; }
 
 .content hr {
-    border: 0 none;
+    border: 1 solid #dddddd;
     color: #cccccc;
     height: 4px;
     padding: 0; }

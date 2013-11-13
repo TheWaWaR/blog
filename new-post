@@ -1,0 +1,34 @@
+#!/usr/bin/env python
+#coding: utf-8
+
+import argparse
+
+parser = argparse.ArgumentParser(description='New blog post.')
+parser.add_argument('-k', required=True, help='File name / Post key')
+parser.add_argument('-c', default='{default}', help='Category')
+parser.add_argument('-t', required=True, help='Title')
+parser.add_argument('-d', help='Created time')
+
+args = parser.parse_args()
+
+
+import os
+import inspect
+from datetime import datetime
+from jinja2 import Template
+
+bin_path = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+root_path = os.path.split(bin_path)[0]
+template_path = os.path.join(root_path, 'markdowns/template.md')
+posts_path = os.path.join(root_path, 'markdowns/posts/{0}.md'.format(args.k))
+
+content = None
+with open(template_path, 'r') as f:
+    content = f.read()
+template = Template(content)
+created = datetime.now().strftime('%Y-%m-%d %H:%M') if args.d is None else args.d
+
+print posts_path
+res = template.render(category=args.c, title=unicode(args.t, encoding='utf8'), created=created)
+with open(posts_path, 'w') as f:
+    f.write(res.encode('utf8'))

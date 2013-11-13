@@ -7,18 +7,18 @@ import os
 import misaka
 from misaka import HtmlRenderer, SmartyPants
 from xml.sax.saxutils import escape
-from pygments import highlight
-from pygments.lexers import get_lexer_by_name
-from pygments.formatters import HtmlFormatter
+# from pygments import highlight
+# from pygments.lexers import get_lexer_by_name
+# from pygments.formatters import HtmlFormatter
 
 # Create a custom renderer
 class BleepRenderer(HtmlRenderer, SmartyPants):
     def block_code(self, text, lang):
-        if not lang:
-            return '\n<pre><code>%s</code></pre>\n' % escape(text.strip())
-        lexer = get_lexer_by_name(lang, stripall=True)
-        formatter = HtmlFormatter()
-        return highlight(text, lexer, formatter)
+        return '\n<pre><code>%s</code></pre>\n' % escape(text)
+        # if not lang:
+        # lexer = get_lexer_by_name(lang, stripall=True)
+        # formatter = HtmlFormatter()
+        # return highlight(text, lexer, formatter)
 
     def image(self, link, title, alt):
         return '''<figure><img class="bordered-img" src="%(src)s">

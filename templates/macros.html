@@ -1,0 +1,13 @@
+
+{% macro render_post_list(posts) %}
+<ul class="nav nav-pills nav-stacked">
+  {% for name, post in posts.iteritems() %}
+  <li>
+    <a href="{{url_for('blog.post', name=name)}}">
+      {{ post.title }}                    
+      <span class="datetime pull-right">{{ post.created }}</span>
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+{% endmacro %}

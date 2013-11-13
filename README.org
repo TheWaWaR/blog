@@ -3,7 +3,9 @@
 + Build posts from $ROOT/markdowns/posts
 + Organized by categories [sidebar]
 + Update posts by git-webhook
-
++ DISQUS Comment
++ Post order
+  
    
 * Dependencies
 + Bootstrap 3

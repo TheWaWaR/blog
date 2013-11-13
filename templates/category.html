@@ -7,14 +7,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Narrow Jumbotron Template for Bootstrap</title>
+    <title>Digital Tree - {{name}}</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="/static/css/app.css" rel="stylesheet">
-    <link href="/static/css/post.css" rel="stylesheet">
+    <link href="/static/css/home.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -26,24 +26,36 @@
     <![endif]-->
   </head>
   
+  {% from "macros.html" import render_post_list  %}
   <body>
     <div class="container">
       <div class="row">
         <div class="col-md-8 col-md-offset-2">
           <div class="header">
+            <ul class="nav nav-pills pull-right">
+              {% for name, page in pages.iteritems() %}
+                <li><a href="{{url_for('blog.page', name=name)}}">{{ page.title }}</a></li>
+              {% endfor %}
+            </ul>
             <a class="home" href="/"><h3>Digital Tree</h3></a>
-          </div>
+          </div> <!-- header -->
 
-          <div class="title">
-            <h1>{{ post.title }}</h1>
-          </div>
+          <div class="row">
+            <div class="col-md-8">
+              {{ render_post_list(posts) }}
+            </div>
 
-          <div class="content">
-            {{ post.content | safe }}
-          </div>
-
-          <div class="footer">
-            @weet
+            <!-- Sidebar -->
+            <div class="col-md-4"> 
+              <ul class="list-group">
+                {% for category, _posts in categories.iteritems() %}
+                <a class="list-group-item"
+                   href="{{url_for('blog.category', name=category)}}">
+                  <span class="badge">{{ _posts|length }}</span>
+                  {{ category }}</a>
+                {% endfor %}                
+              </ul>
+            </div>
           </div>
         </div>
       </div>

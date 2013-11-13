@@ -1,30 +1,10 @@
 #!/usr/bin/env python
 #coding: utf-8
 
-import os
 from flask import Flask
 from blog.views import bp as bp_blog
-from utils.markdown import parse_md
-from utils.gvars import PAGES, POSTS
+from utils.markdown import init_pages_posts
 
-def init_pages_posts(root_path):
-    pages_path = os.path.join(root_path, 'markdowns/pages')
-    posts_path = os.path.join(root_path, 'markdowns/posts')
-    
-    for name in os.listdir(pages_path):
-        if name[-3:] != '.md': continue
-        path = os.path.join(pages_path, name)
-        PAGES[name] = parse_md(path)
-
-    for name in os.listdir(posts_path):
-        if name[-3:] != '.md': continue
-        path = os.path.join(posts_path, name)
-        POSTS[name] = parse_md(path)
-
-    print '===================='
-    print 'PAGES, POSTS:', PAGES, POSTS
-    print '===================='
-    
         
 def create_app():
 
@@ -49,9 +29,8 @@ def create_app():
 
     return tApp
 
-
-        
 app = create_app()
+
 
 if __name__ == '__main__':
     import sys

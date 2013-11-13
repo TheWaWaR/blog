@@ -1,6 +1,7 @@
 title : Flask 部署
-created : [2013-11-12 15:32]
-updated : [2013-11-12 15:44]
+category: 编程技术
+created : 2013-11-12 15:32
+updated : 2013-11-12 15:44
 **********
 
 

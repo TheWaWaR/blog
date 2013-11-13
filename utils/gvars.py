@@ -6,3 +6,4 @@
 
 PAGES = {}
 POSTS = {}
+CATEGORIES = {}

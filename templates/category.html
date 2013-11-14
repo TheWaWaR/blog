@@ -35,8 +35,8 @@
         <div class="col-md-8 col-md-offset-2">
           <div class="header">
             <ul class="nav nav-pills pull-right">
-              {% for name, page in pages.iteritems() %}
-                <li><a href="{{url_for('blog.page', name=name)}}">{{ page.title }}</a></li>
+              {% for page_name, page in pages.iteritems() %}
+                <li><a href="{{url_for('blog.page', name=page_name)}}">{{ page.title }}</a></li>
               {% endfor %}
             </ul>
             <a class="home" href="/"><h3>Digital Tree</h3></a>
@@ -51,7 +51,7 @@
             <div class="col-md-4"> 
               <ul class="list-group">
                 {% for category, _posts in categories.iteritems() %}
-                <a class="list-group-item"
+                <a class="list-group-item {% if name==category %}active{% endif %}" 
                    href="{{url_for('blog.category', name=category)}}">
                   <span class="badge">{{ _posts|length }}</span>
                   {{ category }}</a>

@@ -19,6 +19,18 @@
     <link href="/static/css/home.css" rel="stylesheet">
     <link href="/static/css/gh-fork-ribbon.css" rel="stylesheet">
 
+    <!-- ChatBox -->
+    <!--jQuery UI CSS-->
+    <link rel="stylesheet" href="/static/js/jquery-ui-chatbox/jquery-ui.css" type="text/css" media="screen" />
+    <!--jQuery and jQuery UI with jQuery Chat-->
+    <link type="text/css" href="/static/js/jquery-ui-chatbox/jquery.ui.chatbox.css" rel="stylesheet" />
+    
+    <script type="text/javascript" src="/static/js/jquery-ui-chatbox/jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="/static/js/jquery-ui-chatbox/jquery-ui.js"></script>
+    <script type="text/javascript" src="/static/js/jquery-ui-chatbox/jquery.ui.chatbox.js"></script>
+    <script type="text/javascript" src="/static/js/jquery-ui-chatbox/chatbox-loader.js"> </script>
+
+    
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
@@ -31,6 +43,8 @@
 
   {% from "macros.html" import render_post_list  %}
   <body>
+    <!-- <div id="chat_div"></div> -->
+    
     <div class="github-fork-ribbon-wrapper right">
         <div class="github-fork-ribbon">
             <a href="https://github.com/TheWaWaR/blog">Fork me on GitHub</a>

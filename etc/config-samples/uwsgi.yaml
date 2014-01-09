@@ -1,8 +1,8 @@
 uwsgi: 
-# HOLD:  pythonpath   : /usr/local/lib/python2.7/dist-packages/
   pythonpath   : {{ webapp-dir }}
   virtualenv   : {{ webapp-dir }}/venv
   socket       : /tmp/uwsgi-{{ app-name }}.sock
+  # http-socket  : 0.0.0.0:8080
   chmod-socket : 666
   callable     : app
   master       : true

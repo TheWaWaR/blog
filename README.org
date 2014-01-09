@@ -6,6 +6,17 @@
 + DISQUS Comment
 + Post order
   
-   
-* Dependencies
-+ Bootstrap 3
+
+* 如何运行本项目
+
+#+BEGIN_SRC bash
+git clone https://github.com/TheWaWaR/blog.git
+cd blog
+virtualenv venv
+source venv/bin/active
+pip install -r deps.txt
+
+# 拷贝然后编辑 etc/uwsgi.yaml
+cp etc/config-samples/uwsgi.yaml etc
+uwsgi -y etc/uwsgi.yaml
+#+END_SRC

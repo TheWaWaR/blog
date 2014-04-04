@@ -9,11 +9,13 @@ category: Programming
   
 ## 项目文件管理(目录树)
 ## Outline(Class browser)
-## Python 编程:
+## 强化Python 编程体验:
    + 代码检查: flymake, pylint, pep8
    + 智能代码提示
    + Go to definition
-
+## [TODO] 使用 YouCompleteMe 强化 C/C++/Objective-C 编程体验
+  参考链接: http://valloric.github.io/YouCompleteMe/
+   
 
 # 配置步骤   
 1. 安装基础配置集合
@@ -30,3 +32,4 @@ category: Programming
 
 2. 打开 rope 强化Python编程
 ``let g:pymode_rope = 1``
+

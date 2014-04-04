@@ -1,6 +1,6 @@
 
 title: CentOS 配置笔记
-category: 编程技术
+category: Programming
 created: 2013-07-01 12:39
 **********
 

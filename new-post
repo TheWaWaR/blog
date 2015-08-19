@@ -19,7 +19,7 @@ from jinja2 import Template
 
 root_path = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 template_path = os.path.join(root_path, 'markdowns/template.md')
-posts_path = os.path.join(root_path, 'markdowns/posts/{0}.md'.format(args.k))
+posts_path = os.path.join(root_path, 'markdowns/drafts/{0}.md'.format(args.k))
 
 content = None
 with open(template_path, 'r') as f:

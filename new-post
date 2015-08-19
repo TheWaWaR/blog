@@ -15,7 +15,6 @@ args = parser.parse_args()
 import os
 import inspect
 from datetime import datetime
-from jinja2 import Template
 
 root_path = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 template_path = os.path.join(root_path, 'markdowns/template.md')
@@ -24,10 +23,9 @@ posts_path = os.path.join(root_path, 'markdowns/drafts/{0}.md'.format(args.k))
 content = None
 with open(template_path, 'r') as f:
     content = f.read()
-template = Template(content)
 created = datetime.now().strftime('%Y-%m-%d %H:%M') if args.d is None else args.d
 
 print posts_path
-res = template.render(category=args.c, title=unicode(args.t, encoding='utf8'), created=created)
+res = content.format(category=args.c, title=unicode(args.t, encoding='utf8'), created=created)
 with open(posts_path, 'w') as f:
     f.write(res.encode('utf8'))

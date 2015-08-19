@@ -1,15 +1,14 @@
 #coding: utf-8
 
 import commands
-from flask import (Blueprint, abort, redirect, url_for,
-                   render_template, current_app)
+from flask import (Blueprint, abort, render_template, current_app)
 from utils.gvars import PAGES, POSTS, CATEGORIES
 from utils.markdown import init_pages_posts
 
 bp = Blueprint('blog', __name__)
 CONTENTS = {}
 
-        
+
 
 @bp.route('/')
 def home():
@@ -19,7 +18,7 @@ def home():
                            posts=POSTS.values(),
                            categories=CATEGORIES)
 
-    
+
 @bp.route('/category/<name>')
 def category(name):
     return render_template('category.html',
@@ -28,38 +27,38 @@ def category(name):
                            posts=CATEGORIES[name],
                            categories=CATEGORIES)
 
-    
+
 @bp.route('/page/<name>')
 def page(name):
     ''' Some page (such as about-me) '''
     data = PAGES.get(name, None)
     if data is None:
         abort(404)
-        
+
     return render_template('page.html', data=data)
 
-    
+
 @bp.route('/post/<name>')
 def post(name):
     ''' Some post '''
-    
+
     post = POSTS.get(name, None)
     if post is None:
         abort(404)
-        
+
     return render_template('post.html', post=post)
 
 
 @bp.route('/pull')
 def pull():
     res = commands.getoutput('git pull')
-    return '{0} <a href="/">Home</a>'.format(res)
+    return '<pre>{}</pre> <a href="/">Home</a>'.format(res)
 
-    
+
 @bp.route('/rebuild')
 def rebuild():
     PAGES.clear()
     POSTS.clear()
     CATEGORIES.clear()
     init_pages_posts(current_app.root_path)
-    return '{0} <hr/> <a href="/">Home</a>'.format('<br />'.join(POSTS.keys()))
+    return '<pre>{}</pre> <hr/> <a href="/">Home</a>'.format('<br />'.join(POSTS.keys()))
